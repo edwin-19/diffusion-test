@@ -5,11 +5,9 @@ from matplotlib import pyplot as plt
 
 from diffusers import StableDiffusionPipeline
 
-from matplotlib import pyplot as plt
-
 def main(
     txt_input:str=typer.Option(default=''),
-    num_images:int=typer.Option(default=3),
+    num_images:int=typer.Option(default=2),
 ):
     pipe = StableDiffusionPipeline.from_pretrained(
         "CompVis/stable-diffusion-v1-4",
@@ -20,9 +18,8 @@ def main(
     pipe = pipe.to("cuda")
     pipe.enable_attention_slicing()
 
-    # prompt = [txt_input] * num_images
-    prompt = txt_input
-    
+    prompt = [txt_input] * num_images
+        
     if torch.cuda.is_available():
         with autocast('cuda'):
             torch.cuda.empty_cache() # Ensure app does not explode from memory
@@ -30,7 +27,8 @@ def main(
     
     plt.figure(figsize=(15, 10))
     for index, image in enumerate(results.images):
-        plt.subplot(2, 5, index+1)
+        plt.title(txt_input)
+        plt.subplot(1, 2, index+1)
         plt.imshow(image)
 
     plt.savefig('output.jpg')
