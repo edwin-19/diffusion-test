@@ -40,12 +40,17 @@ def generate_img(
         torch.cuda.empty_cache()
 
         latents = create_latents(pipeline, device, seed_val, size=len(prompt))
-        print(prompt)
         results = pipeline(
-            prompt, num_inference_steps=num_inference_steps,
+            prompt, num_inference_steps=num_inference_steps, 
             height=512, width=512,
-            # guidance_scale=guidance,
-            # latents = latents,
+            guidance_scale=guidance,
+            latents=latents
         )
+        # results = pipeline(
+        #     prompt, num_inference_steps=num_inference_steps,
+        #     height=512, width=512,
+            
+        #     # latents = latents,
+        # )
 
     return results

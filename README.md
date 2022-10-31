@@ -6,6 +6,6 @@ Base repo to test out pl and stable diffussion
 - Using 5GB GPU can still work but must be a higher version of torch
 
 ## To Do
-- [ ] Streamlit webui
+- [x] Streamlit webui
 - [ ] Image in painting
-- [ ] Lightning backened
+- [x] Fastapi backened
