@@ -49,7 +49,7 @@ def create_txt_img_page():
             img_b64 = results.json()['img']
             img = decode_b64(img_b64)
 
-            st.image(img, caption=prompt)
+            st.image(img, caption=text_prompt)
     
 def create_img_inpaiting_page():
     st.header('Image Inpainting')
